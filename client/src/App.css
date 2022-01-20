@@ -1,0 +1,54 @@
+.App {
+    width: 100vw;
+    height: 100vh;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.nav-drawer {
+    display: flex;
+    float: left;
+}
+
+.main-screen {
+    margin-top: 80px;
+    display: flex;
+}
+
+.SidebarList {
+    height: auto;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+}
+
+.SidebarRow {
+    height: 60px;
+    width: 100%;  
+    list-style-type: none;
+    margin: 0;
+    display: flex;
+    flex-direction: row;
+    color: black;
+    justify-content: center;
+    align-items: center;
+}
+
+
+
+.SidebarRowIcon {
+    flex: 30%;
+    display: grid;
+    place-items: center;
+}
+
+.SidebarRowTitle {
+    flex: 70%;
+}
+
+.nav-link {
+    text-decoration: none;
+}
