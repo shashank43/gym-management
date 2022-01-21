@@ -6,6 +6,7 @@ import Members from "./Components/Members";
 import Payments from "./Components/Payments";
 import Analytics from "./Components/Analytics";
 import Settings from "./Components/Settings";
+import AddMember from "./Components/AddMember";
 
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
@@ -20,6 +21,7 @@ function App() {
                 <Route path="/payments" element={<Payments />} />
                 <Route path="/analytics" element={<Analytics />} />
                 <Route path="/settings" element={<Settings />} />
+                <Route path="/add-member" element={<AddMember />} />
             </Routes>
             </div>
        </Router>

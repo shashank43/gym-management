@@ -37,8 +37,6 @@ body {
     align-items: center;
 }
 
-
-
 .SidebarRowIcon {
     flex: 30%;
     display: grid;
@@ -51,4 +49,45 @@ body {
 
 .nav-link {
     text-decoration: none;
+}
+
+.add-member-form {
+    width: 40%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 100px;
+}
+
+.add-member-form .form-field {
+    margin-top: 20px;
+}
+
+.add-member-form .outer {
+    width:100%;
+    justify-content: space-evenly;
+}
+
+.add-member-form .outer .inner {
+    display: inline-block;
+}
+
+.add-member-form .add-member-btn {
+    margin-left: 30%;
+}
+
+.add-member-form .reset-btn {
+    margin-left: 5%;
+    display: inline-block;
+}
+
+.date-picker {
+    max-width: 40%;
+    display: inline-block;
+    margin-right: auto;
+}
+
+.add-member-form .dates {
+    margin-top: 20px;
+    margin-bottom: 10px;
+    display: flex;
 }
