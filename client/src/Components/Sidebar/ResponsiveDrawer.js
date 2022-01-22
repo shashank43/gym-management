@@ -27,17 +27,6 @@ function ResponsiveDrawer(props) {
       <Toolbar />
       <Divider />
       <Sidebar />
-
-      {/* <List>
-        {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-          <ListItem button key={text}>
-            <ListItemIcon>
-              {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-            </ListItemIcon>
-            <ListItemText primary={text} />
-          </ListItem>
-        ))}
-      </List>   */}
     </div>
   );
 
@@ -50,6 +39,8 @@ function ResponsiveDrawer(props) {
       <AppBar
         position="fixed"
         sx={{
+          backgroundColor: {sm: `white`},
+          color: {sm: 'black'},
           width: { sm: `calc(100% - ${drawerWidth}px)` },
           ml: { sm: `${drawerWidth}px` },
         }}

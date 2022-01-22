@@ -2,12 +2,12 @@ import React from "react";
 import './App.css';
 import ResponsiveDrawer from "./Components/Sidebar/ResponsiveDrawer";
 import Home from "./Components/Home";
-import Members from "./Components/Members";
+import Members from "./Components/Member/Members";
 import Payments from "./Components/Payments";
 import Analytics from "./Components/Analytics";
 import Settings from "./Components/Settings";
-import AddMember from "./Components/AddMember";
-import EditMember from "./Components/EditMember";
+import AddMember from "./Components/Member/AddMember";
+import EditMember from "./Components/Member/EditMember";
 
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 

@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 
-import { getMember, editMember } from '../Service/api';
+import { addMember } from '../../Service/api';
 
 import FormGroup from '@mui/material/FormGroup';
 import { Button, FormControl, Input, InputLabel, FormLabel, FormControlLabel, RadioGroup, Radio } from "@mui/material";
@@ -10,7 +10,7 @@ import AdapterDateFns from '@mui/lab/AdapterDateFns';
 import LocalizationProvider from '@mui/lab/LocalizationProvider';
 import DatePicker from '@mui/lab/DatePicker';
 
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function convert(str) {
     var date = new Date(str),
@@ -28,43 +28,25 @@ const initialObject = {
     endOfMembership: ''
 }
 
-function EditMember() {
+function AddMember() {
     const [member, setMember] = useState(initialObject);
     const { firstName, lastName, contactNumber, gender } = member;
     const [valueJoin, setValueJoin] = React.useState(null);
-    const [valueEnd, setValueEnd] = React.useState(null);
+
     const navigate = useNavigate();
-    const { _id } = useParams();
-
-    useEffect(() => {
-        loadMemberData();
-    }, []);
-
-    async function loadMemberData() {
-        const response = await getMember(_id);
-        setMember(response.data);
-        const arr1 = response.data.joining.split('-');
-        const arr2 = response.data.endOfMembership.split('-');
-        const str1 = arr1[2] + "-" + arr1[1] + "-" + arr1[0];
-        const str2 = arr2[2] + "-" + arr2[1] + "-" + arr2[0];
-        const date1 = Date.parse(str1);
-        const date2 = Date.parse(str2);
-        setValueJoin(date1);
-        setValueEnd(date2);
-    }
 
     function onValueChange(event) {
         setMember({...member, [event.target.name] : event.target.value});
     }
 
-    async function HandleEditMember() {
-        await editMember(_id, member);
+    async function HandleAddMember() {
+        await addMember(member);
         setMember(initialObject);
         navigate('/members');
     }
 
     function HandleCancel() {
-        navigate('/members');
+        navigate('/');
     }
 
     return <>
@@ -108,35 +90,34 @@ function EditMember() {
                         onChange={(newValue) => {
                             setValueJoin(newValue);
                             let joinDate = convert(newValue).toString();
-                            setMember({...member, joining : joinDate});
+                            console.log(joinDate);
+                            setMember({...member, joining : joinDate, endOfMembership : joinDate});
                         }}
                         renderInput={(params) => <TextField {...params} />}
                         />
                     </LocalizationProvider>
                 </div>
 
-                <div className='date-picker'>
+                {/* <div className='date-picker'>
                     <LocalizationProvider dateAdapter={AdapterDateFns}>
                         <DatePicker
                         label='End of Membership'
                         value={valueEnd}
                         onChange={(newValue) => {
                             setValueEnd(newValue);
-                            let endDate = convert(newValue).toString();
-                            setMember({...member, endOfMembership: endDate});
                         }}
                         renderInput={(params) => <TextField {...params} />}
                     />
                     </LocalizationProvider>
-                </div>
+                </div> */}
             </div>
             
             <div className="outer form-field">
-                <Button variant="contained" className="inner add-member-btn" onClick={HandleEditMember}>Edit Member</Button>
+                <Button variant="contained" className="inner add-member-btn" onClick={HandleAddMember}>Add Member</Button>
                 <Button variant="outlined" className="inner reset-btn" onClick={HandleCancel}>Cancel</Button>
             </div>
         </FormGroup>
     </>
 }
 
-export default EditMember;
+export default AddMember;

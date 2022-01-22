@@ -91,3 +91,19 @@ body {
     margin-bottom: 10px;
     display: flex;
 }
+
+.table-head .table-cell {
+    font-weight: bold;
+}
+
+.members-table .edit-btn {
+    background-color: #757ce8;
+    padding: 2px 15px;
+    border-radius: 2px;
+}
+
+.members-table .delete-btn {
+    background-color: #ff7961;
+    padding: 2px 15px;
+    border-radius: 2px;
+}
