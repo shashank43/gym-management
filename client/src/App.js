@@ -8,6 +8,7 @@ import Analytics from "./Components/Analytics";
 import Settings from "./Components/Settings";
 import AddMember from "./Components/Member/AddMember";
 import EditMember from "./Components/Member/EditMember";
+import NewPayment from "./Components/NewPayment";
 
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
@@ -24,6 +25,7 @@ function App() {
                 <Route path="/settings" element={<Settings />} />
                 <Route path="/add-member" element={<AddMember />} />
                 <Route path="/edit-member/:_id" element={<EditMember />} />
+                <Route path="/new-payment/:_id" element={<NewPayment />} />
             </Routes>
             </div>
        </Router>

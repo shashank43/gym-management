@@ -1,15 +1,11 @@
 import React, { useState, useEffect } from "react";
-
 import { getMember, editMember } from '../../Service/api';
-
 import FormGroup from '@mui/material/FormGroup';
 import { Button, FormControl, Input, InputLabel, FormLabel, FormControlLabel, RadioGroup, Radio } from "@mui/material";
-
 import TextField from '@mui/material/TextField';
 import AdapterDateFns from '@mui/lab/AdapterDateFns';
 import LocalizationProvider from '@mui/lab/LocalizationProvider';
 import DatePicker from '@mui/lab/DatePicker';
-
 import { useNavigate, useParams } from "react-router-dom";
 
 function convert(str) {

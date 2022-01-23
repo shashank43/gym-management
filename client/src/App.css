@@ -86,6 +86,10 @@ body {
     margin-right: auto;
 }
 
+.date-picker-payment {
+    display: inline-block;
+}
+
 .add-member-form .dates {
     margin-top: 20px;
     margin-bottom: 10px;
@@ -103,7 +107,29 @@ body {
 }
 
 .members-table .delete-btn {
-    background-color: #ff7961;
+    background-color: #f44336;
     padding: 2px 15px;
     border-radius: 2px;
+}
+
+.members-table .new-payment-btn {
+    background-color: #118C4F;
+    padding: 2px 15px;
+    border-radius: 2px;
+}
+
+.payment-form {
+    margin-right: 20px;
+    padding: 40px;
+}
+
+.payment-history {
+    margin-right: 40px;
+    padding: 20px;
+}
+
+.confirm-payment {
+    margin-top: 50px;
+    display: flex;
+    justify-content: center;
 }
