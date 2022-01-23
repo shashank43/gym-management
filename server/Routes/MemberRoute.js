@@ -1,9 +1,9 @@
 import express from 'express';
-import addMember from '../Controllers/addMember.js';
-import getMembers from '../Controllers/getMembers.js';
-import deleteMember from '../Controllers/deleteMember.js';
-import getMember from '../Controllers/getMember.js';
-import editMember from '../Controllers/editMember.js';
+import addMember from '../Controllers/Member/addMember.js';
+import getMembers from '../Controllers/Member/getMembers.js';
+import deleteMember from '../Controllers/Member/deleteMember.js';
+import getMember from '../Controllers/Member/getMember.js';
+import editMember from '../Controllers/Member/editMember.js';
 
 const MemberRoute = express.Router();
 

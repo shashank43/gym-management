@@ -10,6 +10,14 @@ import LocalizationProvider from '@mui/lab/LocalizationProvider';
 import DatePicker from '@mui/lab/DatePicker';
 import Button from '@mui/material/Button';
 import { useNavigate } from "react-router-dom";
+import { addPayment, getPayment, deletePayment } from "../Service/paymentsAPI";
+import DeleteIcon from '@mui/icons-material/Delete';
+
+import Table from '@mui/material/Table';
+import TableBody from '@mui/material/TableBody';
+import TableHead from '@mui/material/TableHead';
+import TableCell from '@mui/material/TableCell';
+import TableRow from '@mui/material/TableRow';
 
 function convert(str) {
     var date = new Date(str),
@@ -17,6 +25,15 @@ function convert(str) {
       day = ("0" + date.getDate()).slice(-2);
     return [day, mnth, date.getFullYear()].join("-");
 }  
+
+function todaysDate() {
+    var today = new Date();
+    var dd = String(today.getDate()).padStart(2, '0');
+    var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+    var yyyy = today.getFullYear();
+    today = dd + '/' + mm + '/' + yyyy;
+    return today;
+}
 
 //add one month to the end of membership date
 // function addMonths(currDate) {
@@ -39,6 +56,13 @@ const initialObject = {
     endOfMembership: ''
 }
 
+const initialPayment = {
+    _id: '',
+    clientId: '',
+    amount: '',
+    dateOfPayment: ''
+}
+
 function NewPayment() {
     const { _id } = useParams();
     const [member, setMember] = useState(initialObject);
@@ -46,6 +70,8 @@ function NewPayment() {
     const [valueJoin, setValueJoin] = React.useState(null);
     const [valueEnd, setValueEnd] = React.useState(null);
     const [amount, setAmount] = React.useState("");
+    const [payment, setPayment] = React.useState(initialPayment);
+    const [payments, setPayments] = React.useState([]);
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -63,6 +89,11 @@ function NewPayment() {
         const date2 = Date.parse(str2);
         setValueJoin(date1);
         setValueEnd(date2);
+
+        const responsePayment = await getPayment(_id);
+        setPayments(responsePayment.data);
+        console.log(responsePayment.data);
+
         //add one month to end of membership date by default when the page loads
         //let newDateStr = addMonths(str2);
         //const newDate = Date.parse(newDateStr);
@@ -73,8 +104,19 @@ function NewPayment() {
     async function HandleConfirmPayment() {
         //edit member here and confirm the new payment
         await editMember(_id, member);
-        console.log(member);
-        navigate('/members');
+        await addPayment(payment);
+        navigate('/');
+    }
+
+    function HandleAmountChange(event) {
+        setAmount(event.target.value);
+        let currDate = todaysDate();
+        setPayment({...payment,  clientId: _id, amount: event.target.value, dateOfPayment: currDate});
+    }
+
+    async function HandleDeletePayment(_id) {
+        await deletePayment(_id);
+        loadMemberData();
     }
 
     return <>
@@ -94,7 +136,7 @@ function NewPayment() {
                             <span style={{margin: 10, fontSize: 35}}>&#8377;</span>
                         </Grid>
                         <Grid item xs={5}>           
-                            <TextField id="outlined-basic" variant="outlined" value={amount} onChange={(event) => {setAmount(event.target.value)}}/>
+                            <TextField id="outlined-basic" variant="outlined" value={amount} onChange={(event) => HandleAmountChange(event)}/>
                         </Grid>
                         <Grid item xs={6}>
                             <div className='date-picker-payment'>
@@ -121,10 +163,30 @@ function NewPayment() {
 
             <Grid item xs={12} md={4}>
                 <Paper className="payment-history">
-                    <h1>This is payment history of the member</h1>
-                </Paper>
+                    <Typography sx={{ mb: 1.5 }} color="text.secondary">
+                        Payment history
+                    </Typography>
+                    <Table className="members-table" sx={{width:"100%"}}>
+                        <TableHead className="table-head }" >
+                            <TableRow> 
+                                <TableCell className="table-cell">Date of Payment</TableCell>
+                                <TableCell className="table-cell">Amount</TableCell>
+                                <TableCell className="table-cell"></TableCell>
+                            </TableRow> 
+                        </TableHead>
+                        <TableBody>
+                            {payments.map((record) => (
+                            <TableRow> 
+                                <TableCell>{record.dateOfPayment}</TableCell>
+                                <TableCell>{record.amount}</TableCell>
+                                <TableCell className="table-cell"> <DeleteIcon onClick={() => {HandleDeletePayment(record._id)}}/> </TableCell>
+                            </TableRow>
+                            ))} 
+                        </TableBody>
+                    </Table>
+                    
+                </Paper>  
             </Grid>
-        
 
         </Grid>
     </>

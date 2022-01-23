@@ -1,4 +1,4 @@
-import Member from "../Models/Member.js";
+import Member from '../../Models/Member.js';
 
 async function editMember(req, res) {
     const receivedMember = req.body;

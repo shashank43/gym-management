@@ -1,4 +1,4 @@
-import Member from "../Models/Member.js";
+import Member from '../../Models/Member.js';
 
 async function deleteMember(req, res) {
     const receivedId = req.params._id;

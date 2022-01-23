@@ -1,4 +1,4 @@
-import Member from '../Models/Member.js';
+import Member from '../../Models/Member.js';
 
 async function getMember(req, res) {
     const _id = req.params._id;
