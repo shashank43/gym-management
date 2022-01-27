@@ -1,16 +1,13 @@
 import React, { useState } from "react";
-
 import { addMember } from '../../Service/api';
-
 import FormGroup from '@mui/material/FormGroup';
 import { Button, FormControl, Input, InputLabel, FormLabel, FormControlLabel, RadioGroup, Radio } from "@mui/material";
-
 import TextField from '@mui/material/TextField';
 import AdapterDateFns from '@mui/lab/AdapterDateFns';
 import LocalizationProvider from '@mui/lab/LocalizationProvider';
 import DatePicker from '@mui/lab/DatePicker';
-
 import { useNavigate } from "react-router-dom";
+import Paper from "@material-ui/core/Paper";
 
 function convert(str) {
     var date = new Date(str),
@@ -50,6 +47,7 @@ function AddMember() {
     }
 
     return <>
+        <Paper className="add-member-paper">
         <FormGroup className="add-member-form">
             <FormControl className="form-field">
                 <InputLabel>First Name</InputLabel>
@@ -117,6 +115,7 @@ function AddMember() {
                 <Button variant="outlined" className="inner reset-btn" onClick={HandleCancel}>Cancel</Button>
             </div>
         </FormGroup>
+        </Paper>
     </>
 }
 

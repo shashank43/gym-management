@@ -7,6 +7,7 @@ import AdapterDateFns from '@mui/lab/AdapterDateFns';
 import LocalizationProvider from '@mui/lab/LocalizationProvider';
 import DatePicker from '@mui/lab/DatePicker';
 import { useNavigate, useParams } from "react-router-dom";
+import Paper from "@material-ui/core/Paper";
 
 function convert(str) {
     var date = new Date(str),
@@ -64,6 +65,7 @@ function EditMember() {
     }
 
     return <>
+        <Paper className="add-member-paper">
         <FormGroup className="add-member-form">
             <FormControl className="form-field">
                 <InputLabel>First Name</InputLabel>
@@ -132,6 +134,7 @@ function EditMember() {
                 <Button variant="outlined" className="inner reset-btn" onClick={HandleCancel}>Cancel</Button>
             </div>
         </FormGroup>
+        </Paper>
     </>
 }
 

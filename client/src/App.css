@@ -6,6 +6,7 @@
 body {
     margin: 0;
     padding: 0;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
 .nav-drawer {
@@ -52,10 +53,15 @@ body {
 }
 
 .add-member-form {
-    width: 40%;
+    width: 60%;
     margin-left: auto;
     margin-right: auto;
     margin-top: 100px;
+}
+
+.add-member-paper {
+    width: 80%;
+    padding: 20px;
 }
 
 .add-member-form .form-field {
@@ -132,4 +138,12 @@ body {
     margin-top: 50px;
     display: flex;
     justify-content: center;
+}
+
+.add-member-btn {
+    background-color: #757ce8;
+    padding: 2px 15px;
+    border-radius: 2px;
+    margin-left: 20px;
+    margin-right: 20px;
 }
