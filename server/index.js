@@ -4,6 +4,7 @@ import cors from 'cors';
 import bodyParser from "body-parser";
 import MemberRoute from "./Routes/MemberRoute.js";
 import PaymentRoute from "./Routes/PaymentRoute.js";
+import AnalyticsRoute from "./Routes/AnalyticsRoute.js";
 
 const app = Express();
 //backend server running on this port
@@ -16,6 +17,7 @@ app.use(cors());
 
 app.use('/members', MemberRoute);
 app.use('/payments', PaymentRoute);
+app.use('/analytics', AnalyticsRoute);
 
 const URL = 'mongodb+srv://admin-shashank:admin-shashank@cluster0.dbqlf.mongodb.net/gymDB?retryWrites=true&w=majority';
 
