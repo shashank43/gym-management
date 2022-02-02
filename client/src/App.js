@@ -9,7 +9,8 @@ import Settings from "./Components/Settings";
 import AddMember from "./Components/Member/AddMember";
 import EditMember from "./Components/Member/EditMember";
 import NewPayment from "./Components/NewPayment";
-
+import Login from "./Components/Login";
+import Signup from "./Components/Signup";
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 function App() {
@@ -26,6 +27,8 @@ function App() {
                 <Route path="/add-member" element={<AddMember />} />
                 <Route path="/edit-member/:_id" element={<EditMember />} />
                 <Route path="/new-payment/:_id" element={<NewPayment />} />
+                <Route path="/login" element={<Login />} />
+                <Route path="/signup" element={<Signup />} />
             </Routes>
             </div>
        </Router>

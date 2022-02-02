@@ -147,3 +147,27 @@ body {
     margin-left: 20px;
     margin-right: 20px;
 }
+
+.login-paper {
+    padding: 20px;
+    margin: auto;
+    width: 80%;
+}
+
+.login-paper .username {
+    display: block;
+    margin-left: 40%;
+    margin-bottom: 20px;
+}
+
+.login-paper .password {
+    display: block;
+    margin-left: 40%;
+    margin-bottom: 20px;
+}
+
+.login-paper .login-btn {
+    display: block;
+    justify-content: center;
+    margin-left: 48%;
+}
