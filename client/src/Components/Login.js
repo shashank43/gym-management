@@ -22,7 +22,8 @@ function Login() {
         const response = await loginUser(user);
         console.log(response.data);
         
-        if(response.data.user) {    //if user exists
+        if(response.data.status === 'ok') {    //if user exists
+            localStorage.setItem('token', response.data.user);
             navigate('/');
         }
         else {

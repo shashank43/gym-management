@@ -4,6 +4,8 @@ import LineChart from "./Charts/LineChart";
 import { getAnalytics } from "../Service/analyticsAPI";
 import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
+import jwt_decode from "jwt-decode";
+import { useNavigate } from 'react-router-dom';
 
 const initialDataDoughnutChart = {
     labels: [
@@ -33,12 +35,22 @@ function Analytics() {
     const [memberData, setMemberData] = useState(initialDataDoughnutChart);
     const [membersGained, setMembersGained] = useState(initialDataLineChart);
     const [revenue, setRevenue] = useState(initialDataLineChart);
+    const navigate = useNavigate();
 
     useEffect(() => {
         getAllAnalytics();
     }, []);
     
     async function getAllAnalytics() {
+        const token = localStorage.getItem('token');
+        if(token) {
+            const user = jwt_decode(token);
+            //we can apply backend login to check if user is legit
+            console.log(user);
+        }
+        else {
+            navigate('/login');
+        }
         const response = await getAnalytics();
         HandleDoughnutChart(response.data);
         HandleMembersGained(response.data);

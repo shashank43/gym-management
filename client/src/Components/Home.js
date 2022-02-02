@@ -5,22 +5,46 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import TableCell from '@mui/material/TableCell';
 import { Button } from "@mui/material";
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Paper from "@material-ui/core/Paper";
 import SearchBar from "material-ui-search-bar";
 import { getExpiredMemberships } from "../Service/analyticsAPI";
 import Grid from '@mui/material/Grid';
+// import jwt from 'jsonwebtoken';
+import jwt_decode from "jwt-decode";
 
 function Home() {
     const [feesDueMembers, setFeesDueMembers] = useState([]);
     const [searched, setSearched] = useState("");
     const [originalRows, setOriginalRows] = useState([]);
+    const navigate = useNavigate();
 
     useEffect(() => {
         initializeHome();
     }, []);
 
     async function initializeHome() {
+        const token = localStorage.getItem('token');
+        if(token) {
+            const user = jwt_decode(token);
+            //we can apply backend login to check if user is legit
+            console.log(user);
+        }
+        else {
+            navigate('/login');
+        }
+        
+        // if(token) {
+        //     const user = jwt.decode(token);
+        //     if(!user) {
+        //         localStorage.removeItem('token');
+        //         navigate('/login');
+        //     }
+        // }
+        // else {
+        //     navigate('/login');
+        // }
+
         const response = await getExpiredMemberships();
         setOriginalRows(response.data.expiredMembers);
         setFeesDueMembers(response.data.expiredMembers);

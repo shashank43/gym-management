@@ -9,17 +9,30 @@ import { Link } from 'react-router-dom';
 import { getMembers, deleteMember } from "../../Service/api";
 import Paper from "@material-ui/core/Paper";
 import SearchBar from "material-ui-search-bar";
+import jwt_decode from "jwt-decode";
+import { useNavigate } from 'react-router-dom';
 
 function Members() {
     const [members, setMembers] = useState([]);
     const [searched, setSearched] = useState("");
     const [originalRows, setOriginalRows] = useState([]);
+    const navigate = useNavigate();
 
     useEffect(() => {
         getAllMembers();
     }, []);
 
     async function getAllMembers() {
+        const token = localStorage.getItem('token');
+        if(token) {
+            const user = jwt_decode(token);
+            //we can apply backend login to check if user is legit
+            console.log(user);
+        }
+        else {
+            navigate('/login');
+        }
+
         const response = await getMembers();
         setOriginalRows(response.data);
         setMembers(response.data);

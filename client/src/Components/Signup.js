@@ -19,9 +19,12 @@ function Signup() {
     }
  
     async function Signup() {
-        console.log(user);
         const response = await signupUser(user);
         console.log(response.data);
+        if(response.data.status === 'ok') {
+            localStorage.setItem('token', response.data.user);
+            navigate('/');
+        }
 
         // console.log(response.data);
         // if(response.data.message === "Logged In") {
